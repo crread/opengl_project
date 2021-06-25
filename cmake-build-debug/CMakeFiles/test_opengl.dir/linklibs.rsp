@@ -1,0 +1,1 @@
+  -LC:/Users/BERTHE~1/Desktop/OPENGL~1/DRAGON~1/GLFW/lib  -LC:/Users/BERTHE~1/Desktop/OPENGL~1/DRAGON~1/glew/lib  -lopengl32 -lglew32 -lglfw3 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

@@ -75,17 +75,6 @@ CMAKE_BINARY_DIR = "C:\Users\berthelot Mickael\Desktop\opengl projets\Dragon3DTe
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Users\berthelot Mickael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.7148.70\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -96,6 +85,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	"C:\Users\berthelot Mickael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.7148.70\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Dragon3D
+# Target rules for targets named test_opengl
 
 # Build rule for target.
-Dragon3D: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Dragon3D
-.PHONY : Dragon3D
+test_opengl: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_opengl
+.PHONY : test_opengl
 
 # fast build rule for target.
-Dragon3D/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/build
-.PHONY : Dragon3D/fast
+test_opengl/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_opengl.dir\build.make CMakeFiles/test_opengl.dir/build
+.PHONY : test_opengl/fast
 
 Dragon3DLight.obj: Dragon3DLight.cpp.obj
 
@@ -148,7 +148,7 @@ Dragon3DLight.obj: Dragon3DLight.cpp.obj
 
 # target to build an object file
 Dragon3DLight.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Dragon3DLight.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_opengl.dir\build.make CMakeFiles/test_opengl.dir/Dragon3DLight.cpp.obj
 .PHONY : Dragon3DLight.cpp.obj
 
 Dragon3DLight.i: Dragon3DLight.cpp.i
@@ -157,7 +157,7 @@ Dragon3DLight.i: Dragon3DLight.cpp.i
 
 # target to preprocess a source file
 Dragon3DLight.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Dragon3DLight.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_opengl.dir\build.make CMakeFiles/test_opengl.dir/Dragon3DLight.cpp.i
 .PHONY : Dragon3DLight.cpp.i
 
 Dragon3DLight.s: Dragon3DLight.cpp.s
@@ -166,89 +166,8 @@ Dragon3DLight.s: Dragon3DLight.cpp.s
 
 # target to generate assembly for a file
 Dragon3DLight.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Dragon3DLight.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_opengl.dir\build.make CMakeFiles/test_opengl.dir/Dragon3DLight.cpp.s
 .PHONY : Dragon3DLight.cpp.s
-
-Sources/Camera.obj: Sources/Camera.cpp.obj
-
-.PHONY : Sources/Camera.obj
-
-# target to build an object file
-Sources/Camera.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Camera.cpp.obj
-.PHONY : Sources/Camera.cpp.obj
-
-Sources/Camera.i: Sources/Camera.cpp.i
-
-.PHONY : Sources/Camera.i
-
-# target to preprocess a source file
-Sources/Camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Camera.cpp.i
-.PHONY : Sources/Camera.cpp.i
-
-Sources/Camera.s: Sources/Camera.cpp.s
-
-.PHONY : Sources/Camera.s
-
-# target to generate assembly for a file
-Sources/Camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Camera.cpp.s
-.PHONY : Sources/Camera.cpp.s
-
-Sources/ObjLoader.obj: Sources/ObjLoader.cpp.obj
-
-.PHONY : Sources/ObjLoader.obj
-
-# target to build an object file
-Sources/ObjLoader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/ObjLoader.cpp.obj
-.PHONY : Sources/ObjLoader.cpp.obj
-
-Sources/ObjLoader.i: Sources/ObjLoader.cpp.i
-
-.PHONY : Sources/ObjLoader.i
-
-# target to preprocess a source file
-Sources/ObjLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/ObjLoader.cpp.i
-.PHONY : Sources/ObjLoader.cpp.i
-
-Sources/ObjLoader.s: Sources/ObjLoader.cpp.s
-
-.PHONY : Sources/ObjLoader.s
-
-# target to generate assembly for a file
-Sources/ObjLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/ObjLoader.cpp.s
-.PHONY : Sources/ObjLoader.cpp.s
-
-Sources/Quaternion.obj: Sources/Quaternion.cpp.obj
-
-.PHONY : Sources/Quaternion.obj
-
-# target to build an object file
-Sources/Quaternion.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Quaternion.cpp.obj
-.PHONY : Sources/Quaternion.cpp.obj
-
-Sources/Quaternion.i: Sources/Quaternion.cpp.i
-
-.PHONY : Sources/Quaternion.i
-
-# target to preprocess a source file
-Sources/Quaternion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Quaternion.cpp.i
-.PHONY : Sources/Quaternion.cpp.i
-
-Sources/Quaternion.s: Sources/Quaternion.cpp.s
-
-.PHONY : Sources/Quaternion.s
-
-# target to generate assembly for a file
-Sources/Quaternion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Dragon3D.dir\build.make CMakeFiles/Dragon3D.dir/Sources/Quaternion.cpp.s
-.PHONY : Sources/Quaternion.cpp.s
 
 # Help Target
 help:
@@ -258,19 +177,10 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... Dragon3D
+	@echo ... test_opengl
 	@echo ... Dragon3DLight.obj
 	@echo ... Dragon3DLight.i
 	@echo ... Dragon3DLight.s
-	@echo ... Sources/Camera.obj
-	@echo ... Sources/Camera.i
-	@echo ... Sources/Camera.s
-	@echo ... Sources/ObjLoader.obj
-	@echo ... Sources/ObjLoader.i
-	@echo ... Sources/ObjLoader.s
-	@echo ... Sources/Quaternion.obj
-	@echo ... Sources/Quaternion.i
-	@echo ... Sources/Quaternion.s
 .PHONY : help
 
 

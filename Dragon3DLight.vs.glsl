@@ -1,28 +1,22 @@
-////attribute vec4 a_position;  // (x, y, z, w=1)
-////attribute vec2 a_texcoords;
-////attribute vec3 a_normal;
-//
-//attribute vec3 a_normals;
-//attribute vec3 a_coord;
-//attribute float a_element;
-//
-////uniform mat4 u_rotationMatrix;
-////uniform mat4 u_translationMatrix;
-////uniform mat4 u_projectionMatrix;
-//
-////varying vec3 v_normal;
-////varying vec2 v_texcoords;
-//
-//void main(void)
-//{
-////    mat4 worldMatrix = u_translationMatrix * u_rotationMatrix;
-////
-////    v_normal = mat3(worldMatrix) * a_normal;
-////
-////    gl_Position = u_projectionMatrix * worldMatrix * a_position;
-////
-////    v_texcoords = a_texcoords;
-//
-////    v_normal = a_normals;
-//    return;
-//}
+attribute vec4 a_position;  // (x, y, z, w=1)
+attribute vec2 a_texcoords;
+attribute vec3 a_normal;
+
+uniform mat4 u_rotationMatrix;
+uniform mat4 u_translationMatrix;
+uniform mat4 u_projectionMatrix;
+
+varying vec3 v_normal;
+varying vec2 v_texcoords;
+
+void main(void)
+{
+    mat4 worldMatrix = u_translationMatrix * u_rotationMatrix;
+    gl_Position = u_projectionMatrix * worldMatrix * a_position;
+
+    v_normal = a_normal;
+
+    v_texcoords = a_texcoords;
+
+//    gl_position = vec4(a_position);
+}

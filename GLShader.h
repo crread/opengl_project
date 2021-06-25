@@ -4,7 +4,6 @@
 
 #include <cstdlib>
 #include <cstring>
-#include <iostream>
 
 GLuint LoadShader(const char* filename, GLenum type)
 {
@@ -49,7 +48,6 @@ GLuint LoadShader(const char* filename, GLenum type)
 
         free(buffer);
         fclose(file);
-
     }
     return shader;
 }
@@ -60,11 +58,11 @@ GLuint CreateProgram(GLuint vertex_shader, GLuint fragment_shader)
 
     glAttachShader(program, vertex_shader);
     glAttachShader(program, fragment_shader);
-
+    
     glLinkProgram(program);
 
     // TODO check link result
-
+ 
     GLint link_status = GL_TRUE;
     glGetProgramiv(program, GL_LINK_STATUS, &link_status);
     if (link_status != GL_TRUE)

@@ -1,0 +1,156 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/Dragon3DLight.cpp
+tiny_obj_loader.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/tiny_obj_loader.h
+glew/include/glew.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/glew/include/glew.h
+GLFW/include/glfw3.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLFW/include/glfw3.h
+cstdio
+-
+cmath
+-
+iostream
+-
+DragonData.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/DragonData.h
+./GLShader.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLShader.h
+./stb-master/stb_image.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/stb-master/stb_image.h
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/DragonData.h
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLFW/include/glfw3.h
+stddef.h
+-
+stdint.h
+-
+vulkan/vulkan.h
+-
+GLES/gl.h
+-
+GLES/glext.h
+-
+GLES2/gl2.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl3.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl31.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl32.h
+-
+GLES2/gl2ext.h
+-
+OpenGL/gl3.h
+-
+OpenGL/gl3ext.h
+-
+GL/glcorearb.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+OpenGL/gl.h
+-
+GL/gl.h
+-
+GL/glext.h
+-
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLShader.h
+cstdlib
+-
+cstring
+-
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/glew/include/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+Availability.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/stb-master/stb_image.h
+stb_image.h
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/stb-master/stb_image.h
+stdio.h
+-
+stdlib.h
+-
+stdarg.h
+-
+stddef.h
+-
+stdlib.h
+-
+string.h
+-
+limits.h
+-
+math.h
+-
+stdio.h
+-
+assert.h
+-
+stdint.h
+-
+emmintrin.h
+-
+intrin.h
+-
+arm_neon.h
+-
+
+C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/tiny_obj_loader.h
+map
+-
+string
+-
+vector
+-
+cassert
+-
+cctype
+-
+cmath
+-
+cstddef
+-
+cstdlib
+-
+cstring
+-
+fstream
+-
+limits
+-
+sstream
+-
+utility
+-
+
