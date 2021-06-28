@@ -12,11 +12,10 @@ varying vec2 v_texcoords;
 void main(void)
 {
     mat4 worldMatrix = u_translationMatrix * u_rotationMatrix;
+
+    v_normal = mat3(worldMatrix) * a_normal;
+
     gl_Position = u_projectionMatrix * worldMatrix * a_position;
 
-    v_normal = a_normal;
-
     v_texcoords = a_texcoords;
-
-//    gl_position = vec4(a_position);
 }

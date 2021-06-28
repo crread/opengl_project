@@ -7,8 +7,8 @@
 #include <cstdio>
 #include <cmath>
 #include <iostream>
-#include "DragonData.h"
 #include "./GLShader.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "./stb-master/stb_image.h"
 
@@ -60,6 +60,64 @@ int main()
         return -1;
     }
 
+    std::string objPath = "./../models/Cottage.obj";
+    tinyobj::attrib_t attribs;
+    std::vector<tinyobj::shape_t> shapes;
+    std::vector<tinyobj::material_t> materials;
+
+    std::string warm;
+    std::string err;
+
+//    bool ret = tinyobj::LoadObj(&attribs, &shapes, &materials, &warm, &err, "./../models/Cottage.obj", "", true, false);
+    bool ret = tinyobj::LoadObj(&attribs, &shapes, &materials, &warm, &err, "./../models/suzanne.obj", nullptr, true, true);
+    if (!warm.empty()) {
+        std::cout<<warm<<std::endl;
+    }
+
+    if (!err.empty()) {
+        std::cout<<err<<std::endl;
+    }
+
+    if (!ret) {
+        exit(1);
+    }
+
+    std::vector<float> listData;
+
+    int index = 0;
+
+    for (auto & shape : shapes){
+
+        int index_offset = 0;
+
+        for (int j = 0; j < shape.mesh.num_face_vertices.size(); j++) {
+            int fv = shape.mesh.num_face_vertices[j];
+
+            for (int k = 0; k < fv; k++) {
+                tinyobj::index_t idx = shape.mesh.indices[index_offset + k];
+
+                listData.push_back(attribs.vertices[3*idx.vertex_index+0]);
+                listData.push_back(attribs.vertices[3*idx.vertex_index+1]);
+                listData.push_back(attribs.vertices[3*idx.vertex_index+2]);
+
+                if (!attribs.normals.empty()) {
+//                    printf("normals");
+                    listData.push_back(attribs.normals[3*idx.normal_index+0]);
+                    listData.push_back(attribs.normals[3*idx.normal_index+1]);
+                    listData.push_back(attribs.normals[3*idx.normal_index+2]);
+                }
+
+                if (!attribs.texcoords.empty()) {
+//                    printf("text coords");
+                    listData.push_back(attribs.texcoords[2*idx.texcoord_index+0]);
+                    listData.push_back(attribs.texcoords[2*idx.texcoord_index+1]);
+                }
+            }
+            index_offset += fv;
+            index += fv;
+        }
+    }
+
     Initialize(window);
 
     int h, w, nrChannels;
@@ -80,53 +138,6 @@ int main()
         stbi_image_free(data);
     }
 
-    std::string objPath = "./../models/Cottage.obj";
-    tinyobj::attrib_t attribs;
-    std::vector<tinyobj::shape_t> shapes;
-    std::vector<tinyobj::material_t> materials;
-
-    std::string warm;
-    std::string err;
-
-    bool ret = tinyobj::LoadObj(&attribs, &shapes, &materials, &warm, &err, objPath.c_str());
-
-    if (!warm.empty()) {
-        std::cout<<warm<<std::endl;
-    }
-
-    if (!err.empty()) {
-        std::cout<<err<<std::endl;
-    }
-
-    if (!ret) {
-        exit(1);
-    }
-
-    std::vector<float> listData;
-
-    for (auto & shape : shapes){
-
-        int index_offset = 0;
-
-        for (int j = 0; j < shape.mesh.num_face_vertices.size(); j++) {
-            int fv = shape.mesh.num_face_vertices[j];
-
-            for (int k = 0; k < fv; k++) {
-                tinyobj::index_t idx = shape.mesh.indices[index_offset + k];
-                listData.push_back(attribs.vertices[3*idx.vertex_index+0]);
-                listData.push_back(attribs.vertices[3*idx.vertex_index+1]);
-                listData.push_back(attribs.vertices[3*idx.vertex_index+2]);
-                listData.push_back(attribs.normals[3*idx.normal_index+0]);
-                listData.push_back(attribs.normals[3*idx.normal_index+1]);
-                listData.push_back(attribs.normals[3*idx.normal_index+2]);
-                listData.push_back(attribs.texcoords[2*idx.texcoord_index+0]);
-                listData.push_back(attribs.texcoords[2*idx.texcoord_index+1]);
-            }
-
-            index_offset += fv;
-        }
-    }
-
     while (!glfwWindowShouldClose(window))
     {
         int width, height;
@@ -141,28 +152,18 @@ int main()
 
         static const int stride = sizeof(float) * 8;
 
-        const int POSITION = glGetAttribLocation(
-                            Dragon3DProgram,
-                            "a_position");
+        const GLint POSITION = glGetAttribLocation( Dragon3DProgram, "a_position");
         glEnableVertexAttribArray(POSITION);
-        glVertexAttribPointer(POSITION, 3, GL_FLOAT, false, stride, &listData[0]);
-
-        const int NORMAL = glGetAttribLocation(
-                            Dragon3DProgram,
-                            "a_normal");
-        glEnableVertexAttribArray(NORMAL);
-        glVertexAttribPointer(NORMAL, 3, GL_FLOAT, false, stride, &listData[3]);
+        glVertexAttribPointer(POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, &listData[0]);
 
         const GLint texAttrib = glGetAttribLocation(Dragon3DProgram,"a_texcoords");
         glEnableVertexAttribArray(texAttrib);
-        glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, stride, &listData[6]);
+        glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, &listData[2]);
 
         glUseProgram(Dragon3DProgram);
 
         float time = glfwGetTime();
-        const int timeLocation = glGetUniformLocation(
-                    Dragon3DProgram,
-                    "u_time");
+        const int timeLocation = glGetUniformLocation(Dragon3DProgram, "u_time");
         glUniform1f(timeLocation, time);
 
         float rotationMatrix[] = {
@@ -202,10 +203,10 @@ int main()
                             );
 
         // fov=45°, aspect-ratio=width/height, znear=0.1, zfar=1000.0
-        float fov = 70.0f;
+        float fov = 30.0f;
         float radianFov = fov * (float)(M_PI / 180.0);
         float aspect = (float)width / (float)height;
-        float znear = 0.1f, zfar = 1000.0f;
+        float znear = 0.1f, zfar = 500.0f;
         float cot = 1.0f / tanf(radianFov / 2.0f);
 
         float projectionMatrix[] = {
@@ -229,7 +230,7 @@ int main()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
 
-        glDrawElements(GL_TRIANGLES, listData.size() * sizeof(float), GL_FLOAT, &listData);
+        glDrawArrays(GL_TRIANGLES, listData[0], index);
 
         glfwSwapBuffers(window);
 

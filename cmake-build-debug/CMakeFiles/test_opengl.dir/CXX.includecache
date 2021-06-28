@@ -19,14 +19,10 @@ cmath
 -
 iostream
 -
-DragonData.h
-C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/DragonData.h
 ./GLShader.h
 C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLShader.h
 ./stb-master/stb_image.h
 C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/stb-master/stb_image.h
-
-C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/DragonData.h
 
 C:/Users/berthelot Mickael/Desktop/opengl projets/Dragon3DTexture/GLFW/include/glfw3.h
 stddef.h
